@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "483536172225",
+    "project_id": "expenditures-prod",
+    "storage_bucket": "expenditures-prod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483536172225:android:9fb68a5f37a60c9e359040",
+        "android_client_info": {
+          "package_name": "com.planatech.expenditures"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "483536172225-juh4c2vlpusjj2jlahg4svdkfn2f1qvp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5gIno14bIgJOZgg57e_GkAz2Byz16sd0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "483536172225-juh4c2vlpusjj2jlahg4svdkfn2f1qvp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
