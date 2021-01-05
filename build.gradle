@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.4.10"
+    ext.kotlin_version = "1.4.21"
     repositories {
         google()
         jcenter()
@@ -29,5 +29,5 @@ task clean(type: Delete) {
 ext {
     retrofitVersion = '2.9.0'
     jetpackVersion = "2.2.0"
-    navigationComponentVersion = "2.3.1"
+    navigationComponentVersion = "2.3.2"
 }
