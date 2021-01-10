@@ -2,6 +2,7 @@ package com.planatech.expenditures
 
 import android.app.Application
 import android.content.Context
+import com.planatech.expenditures.utils.AuthenticationHelper
 import com.planatech.expenditures.utils.PreferencesUtils
 
 class App: Application() {
@@ -25,6 +26,7 @@ class App: Application() {
     override fun onCreate() {
         super.onCreate()
         PreferencesUtils.initPreferences(this)
+        AuthenticationHelper.initAuthHelper(this)
     }
 
 }

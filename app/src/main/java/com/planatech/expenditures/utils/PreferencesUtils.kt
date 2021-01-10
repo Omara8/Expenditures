@@ -3,6 +3,7 @@ package com.planatech.expenditures.utils
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
+import com.google.firebase.auth.FirebaseUser
 
 object PreferencesUtils {
 
@@ -12,9 +13,10 @@ object PreferencesUtils {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     }
 
-    fun setUserId(id: String){
+    fun setUserData(user: FirebaseUser?){
         sharedPreferences?.let {
-            it.edit().putString(USER_ID, id).apply()
+            it.edit().putString(USER_ID, user?.uid).apply()
+            it.edit().putString(USER_IMAGE, user?.photoUrl?.toString()).apply()
         }
     }
 

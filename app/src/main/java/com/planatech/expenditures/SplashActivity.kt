@@ -1,9 +1,13 @@
 package com.planatech.expenditures
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.IdpResponse
+import com.google.firebase.auth.FirebaseAuth
 import com.planatech.expenditures.utils.*
 
 class SplashActivity: AppCompatActivity() {
@@ -12,7 +16,6 @@ class SplashActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         AnalyticsUtils.logEvent(AnalyticsEvents.AppOpened)
-        setLoginListener()
         checkExistingUser()
     }
 
@@ -21,17 +24,25 @@ class SplashActivity: AppCompatActivity() {
             val userId = PreferencesUtils.getUserId()
             if (userId != null) {
                 //go to app main screen
-//                splash_main_content?.showContent(listOf(R.id.login_button))
                 openMainActivity()
             } else
                 //show login screen
-                showToast(this, "Login to continue")
-//                splash_main_content?.showContent()
+                createSignInIntent()
         }, SPLASH_DISPLAY_TIME)
     }
 
-    private fun setLoginListener() {
+    private fun createSignInIntent() {
+        val providers = arrayListOf(AuthUI.IdpConfig.EmailBuilder().build(),
+            AuthUI.IdpConfig.GoogleBuilder().build())
 
+        startActivityForResult(
+            AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .setTheme(R.style.loginTheme)
+                .setLogo(R.drawable.ic_launcher_foreground)
+                .build(),
+            99)
     }
 
     private fun openMainActivity() {
@@ -39,6 +50,25 @@ class SplashActivity: AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 99) {
+            val response = IdpResponse.fromResultIntent(data)
+
+            if (resultCode == Activity.RESULT_OK) {
+                // Successfully signed in
+                val user = FirebaseAuth.getInstance().currentUser
+                PreferencesUtils.setUserData(user)
+                openMainActivity()
+            } else {
+                // Sign in failed. If response is null the user canceled the
+                // sign-in flow using the back button. Otherwise check
+                 showToast(this, response?.error.toString())
+            }
+        }
     }
 
 }
