@@ -12,10 +12,11 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 import com.planatech.expenditures.R
+import com.planatech.expenditures.utils.extensions.decodeDots
 
 @BindingAdapter("imageUrl")
 fun loadImage(imageView: ImageView, imageUrl: String?) {
-    Glide.with(imageView.context).load(imageUrl).apply(
+    Glide.with(imageView.context).load(imageUrl?.decodeDots()).apply(
         RequestOptions().placeholder(R.drawable.ic_placeholder_svg)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
     ).into(imageView)
@@ -23,7 +24,7 @@ fun loadImage(imageView: ImageView, imageUrl: String?) {
 
 @BindingAdapter("imageUrl")
 fun loadImage(imageView: ShapeableImageView, imageUrl: String?) {
-    Glide.with(imageView.context).load(imageUrl).apply(
+    Glide.with(imageView.context).load(imageUrl?.decodeDots()).apply(
         RequestOptions().placeholder(R.drawable.ic_placeholder_svg)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
     ).into(imageView)

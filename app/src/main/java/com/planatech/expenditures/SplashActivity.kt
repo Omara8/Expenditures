@@ -24,11 +24,17 @@ class SplashActivity: AppCompatActivity() {
             val userId = PreferencesUtils.getUserId()
             if (userId != null) {
                 //go to app main screen
-                openMainActivity()
+                initUserAndOpenApp()
             } else
                 //show login screen
                 createSignInIntent()
         }, SPLASH_DISPLAY_TIME)
+    }
+
+    private fun initUserAndOpenApp() {
+        FirebaseDatabase.initUser {
+            openMainActivity()
+        }
     }
 
     private fun createSignInIntent() {
@@ -62,7 +68,7 @@ class SplashActivity: AppCompatActivity() {
                 // Successfully signed in
                 val user = FirebaseAuth.getInstance().currentUser
                 PreferencesUtils.setUserData(user)
-                openMainActivity()
+                initUserAndOpenApp()
             } else {
                 // Sign in failed. If response is null the user canceled the
                 // sign-in flow using the back button. Otherwise check
