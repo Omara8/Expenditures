@@ -7,6 +7,7 @@ import java.util.*
 @Keep
 data class Transaction(
     val id: String,
+    val name: String,
     val date: Date,
     val amount: Float,
     val endDate: Date,

@@ -9,9 +9,9 @@ import com.google.firebase.ktx.Firebase
 import com.planatech.expenditures.model.User
 import com.planatech.expenditures.utils.extensions.encodeDots
 
-object FirebaseDatabase {
+object DatabaseUtils {
 
-    private val TAG = FirebaseDatabase.javaClass.name
+    private val TAG = DatabaseUtils.javaClass.name
     private val dataBase = Firebase.database.reference
     private val userId = PreferencesUtils.getUserId()
     private val userName = PreferencesUtils.getUserName()
@@ -27,7 +27,8 @@ object FirebaseDatabase {
                     if (data == null) {
                         val user = User(
                             it, userName, userEmail, userImage, 0f, null,
-                            0f, 0f, 0f, null
+                            0f, 0f, 0f, null,
+                            null, null
                         )
                         dataBase.child(USERS).child(it).setValue(user).addOnCompleteListener {
                             Log.d(TAG, "initUser: TEST")

@@ -3,7 +3,7 @@ package com.planatech.expenditures.utils
 import android.content.Context
 import com.firebase.ui.auth.AuthUI
 
-object AuthenticationHelper {
+object AuthenticationUtils {
 
     var context: Context? = null
 

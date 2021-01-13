@@ -32,7 +32,7 @@ class SplashActivity: AppCompatActivity() {
     }
 
     private fun initUserAndOpenApp() {
-        FirebaseDatabase.initUser {
+        DatabaseUtils.initUser {
             openMainActivity()
         }
     }

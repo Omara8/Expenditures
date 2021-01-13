@@ -3,7 +3,7 @@ package com.planatech.expenditures
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.planatech.expenditures.utils.AuthenticationHelper
+import com.planatech.expenditures.utils.AuthenticationUtils
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun signOut(){
-        AuthenticationHelper.signOut {
+        AuthenticationUtils.signOut {
             startActivity(Intent(this, SplashActivity::class.java))
             finish()
         }

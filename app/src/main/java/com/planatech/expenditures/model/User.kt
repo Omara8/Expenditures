@@ -14,5 +14,7 @@ data class User(
     val salaryAmount: Float?,
     val totalMonthlyPayments: Float?,
     val totalMonthlyIncome: Float?,
-    val transactions: List<Transaction>?
+    val transactions: List<Transaction>?,
+    val onGoingPayments: List<Transaction>?,
+    val onGoingIncome: List<Transaction>?
 ) : Serializable
