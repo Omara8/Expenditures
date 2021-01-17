@@ -17,6 +17,7 @@ class SplashActivity: AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         AnalyticsUtils.logEvent(AnalyticsEvents.AppOpened)
         checkExistingUser()
+//        AuthenticationUtils.signOut {  }
     }
 
     private fun checkExistingUser() {
@@ -32,7 +33,7 @@ class SplashActivity: AppCompatActivity() {
     }
 
     private fun initUserAndOpenApp() {
-        DatabaseUtils.initUser {
+        DatabaseUtils.getDatabase().initUser {
             openMainActivity()
         }
     }

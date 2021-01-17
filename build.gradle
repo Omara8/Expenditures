@@ -30,4 +30,5 @@ ext {
     retrofitVersion = '2.9.0'
     jetpackVersion = "2.2.0"
     navigationComponentVersion = "2.3.2"
+    pagingVersion = "3.0.0-alpha12"
 }

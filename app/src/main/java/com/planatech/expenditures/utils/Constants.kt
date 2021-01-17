@@ -7,3 +7,5 @@ const val USER_EMAIL = "USER_EMAIL"
 const val SPLASH_DISPLAY_TIME: Long = 1500
 
 const val USERS = "Users"
+const val USER_INFO = "User Info"
+const val TRANSACTIONS = "Transactions"

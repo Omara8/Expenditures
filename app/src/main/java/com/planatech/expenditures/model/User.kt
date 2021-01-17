@@ -13,8 +13,8 @@ data class User(
     val salaryDay: String?,
     val salaryAmount: Float?,
     val totalMonthlyPayments: Float?,
-    val totalMonthlyIncome: Float?,
-    val transactions: List<Transaction>?,
-    val onGoingPayments: List<Transaction>?,
-    val onGoingIncome: List<Transaction>?
+    val totalMonthlyIncome: Float?
+//    val transactions: List<Transaction>?,
+//    val onGoingPayments: List<Transaction>?,
+//    val onGoingIncome: List<Transaction>?
 ) : Serializable
