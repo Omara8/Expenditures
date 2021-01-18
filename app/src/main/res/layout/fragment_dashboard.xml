@@ -1,6 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="user"
+            type="com.planatech.expenditures.model.User" />
+
+    </data>
+
+    <com.planatech.expenditures.utils.progressiveLayouts.ProgressConstraintLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/mainMotionLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutDescription="@xml/fragment_dashboard_scene">
+
+            <View
+                android:id="@+id/appBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryLight"
+                android:elevation="@dimen/_8dp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profileImage"
+                android:layout_width="@dimen/_160dp"
+                android:layout_height="@dimen/_160dp"
+                android:elevation="@dimen/_8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_placeholder_svg"
+                app:imageUrl="@{user.image}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.4"
+                app:shapeAppearanceOverlay="@style/circleImageView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_8dp"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/_20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profileImage"
+                app:textFromString="@{user.name}" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/userBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_8dp"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/_20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/userName"
+                app:textFromFloat="@{user.balance}" />
+
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/transactionRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16dp"
+            android:layout_marginStart="@dimen/_16dp"
+            android:layout_marginEnd="@dimen/_16dp"
+            android:background="@color/white"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mainMotionLayout" />
+
+    </com.planatech.expenditures.utils.progressiveLayouts.ProgressConstraintLayout>
+
+</layout>

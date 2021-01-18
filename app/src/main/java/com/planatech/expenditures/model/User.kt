@@ -5,16 +5,13 @@ import java.io.Serializable
 
 @Keep
 data class User(
-    val id: String,
-    val name: String?,
-    val email: String?,
-    val image: String?,
-    val balance: Float?,
-    val salaryDay: String?,
-    val salaryAmount: Float?,
-    val totalMonthlyPayments: Float?,
-    val totalMonthlyIncome: Float?
-//    val transactions: List<Transaction>?,
-//    val onGoingPayments: List<Transaction>?,
-//    val onGoingIncome: List<Transaction>?
+    val id: String = "",
+    val name: String? = "",
+    val email: String? = "",
+    val image: String? = "",
+    val balance: Float? = 0f,
+    val salaryDay: String? = "",
+    val salaryAmount: Float? = 0f,
+    val totalMonthlyPayments: Float? = 0f,
+    val totalMonthlyIncome: Float? = 0f
 ) : Serializable

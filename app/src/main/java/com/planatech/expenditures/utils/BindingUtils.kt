@@ -44,6 +44,16 @@ fun MaterialTextView.textFromHtml(text: String?) {
     this.movementMethod = LinkMovementMethod.getInstance()
 }
 
+@BindingAdapter("textFromFloat")
+fun MaterialTextView.textFromFloat(text: Float?){
+    this.text = "Balance "+ text.toString()
+}
+
+@BindingAdapter("textFromString")
+fun MaterialTextView.textFromString(text: String?){
+    this.text = text
+}
+
 @BindingAdapter("checkAuthorVisibility")
 fun MaterialTextView.checkAuthorVisibility(text: String?) {
     if (text.isNullOrEmpty())

@@ -5,8 +5,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
 import com.planatech.expenditures.model.Transaction
 import com.planatech.expenditures.model.User
 import com.planatech.expenditures.utils.extensions.encodeDots
@@ -32,7 +32,7 @@ class DatabaseUtils {
         }
     }
 
-    fun getTransactions(){
+    fun getTransactions() {
         dataBase.child(USERS).child(userId!!).child(TRANSACTIONS).addListenerForSingleValueEvent(
             object :
                 ValueEventListener {
@@ -45,7 +45,6 @@ class DatabaseUtils {
                 override fun onCancelled(error: DatabaseError) {
                     Log.d(TAG, "onCancelled: getTransaction")
                 }
-
             })
     }
 
@@ -60,12 +59,13 @@ class DatabaseUtils {
                             it, userName, userEmail, userImage, 0f, null,
                             0f, 0f, 0f
                         )
-                        dataBase.child(USERS).child(it).child(USER_INFO).setValue(user).addOnCompleteListener {
-                            Log.d(TAG, "initUser: onComplete")
-                        }.addOnSuccessListener {
-                            callBack()
-                        }
-                    }else
+                        dataBase.child(USERS).child(it).child(USER_INFO).setValue(user)
+                            .addOnCompleteListener {
+                                Log.d(TAG, "initUser: onComplete")
+                            }.addOnSuccessListener {
+                                callBack()
+                            }
+                    } else
                         callBack()
                 }
 
@@ -77,11 +77,29 @@ class DatabaseUtils {
         }
     }
 
+    fun loadUserInfo(callBack: (user: User?) -> Unit) {
+        userId?.let {
+            dataBase.child(USERS).child(it).child(USER_INFO).addValueEventListener(
+                object :
+                    ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val user = snapshot.getValue<User>()
+                        callBack(user)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.d(TAG, "onCancelled: getTransaction")
+                    }
+                })
+        }
+    }
+
     fun addTransaction(transaction: Transaction, callBack: () -> Unit) {
         userId?.let {
-            dataBase.child(USERS).child(it).child(TRANSACTIONS).push().setValue(transaction).addOnSuccessListener {
-                callBack()
-            }
+            dataBase.child(USERS).child(it).child(TRANSACTIONS).push().setValue(transaction)
+                .addOnSuccessListener {
+                    callBack()
+                }
         }
     }
 
