@@ -9,6 +9,6 @@
         android:id="@+id/dashboardFragment"
         android:name="com.planatech.expenditures.dashboard.view.DashboardFragment"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard"/>
+        tools:layout="@layout/fragment_dashboard" />
 
 </navigation>

@@ -10,7 +10,7 @@ import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import com.planatech.expenditures.utils.*
 
-class SplashActivity: AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +27,7 @@ class SplashActivity: AppCompatActivity() {
                 //go to app main screen
                 initUserAndOpenApp()
             } else
-                //show login screen
+            //show login screen
                 createSignInIntent()
         }, SPLASH_DISPLAY_TIME)
     }
@@ -39,8 +39,10 @@ class SplashActivity: AppCompatActivity() {
     }
 
     private fun createSignInIntent() {
-        val providers = arrayListOf(AuthUI.IdpConfig.EmailBuilder().build(),
-            AuthUI.IdpConfig.GoogleBuilder().build())
+        val providers = arrayListOf(
+            AuthUI.IdpConfig.EmailBuilder().build(),
+            AuthUI.IdpConfig.GoogleBuilder().build()
+        )
 
         startActivityForResult(
             AuthUI.getInstance()
@@ -49,7 +51,8 @@ class SplashActivity: AppCompatActivity() {
                 .setTheme(R.style.loginTheme)
                 .setLogo(R.drawable.ic_launcher_foreground)
                 .build(),
-            99)
+            99
+        )
     }
 
     private fun openMainActivity() {
@@ -73,7 +76,7 @@ class SplashActivity: AppCompatActivity() {
             } else {
                 // Sign in failed. If response is null the user canceled the
                 // sign-in flow using the back button. Otherwise check
-                 showToast(this, response?.error.toString())
+                showToast(this, response?.error.toString())
             }
         }
     }

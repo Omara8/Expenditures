@@ -8,6 +8,10 @@
             name="user"
             type="com.planatech.expenditures.model.User" />
 
+        <variable
+            name="adapter"
+            type="com.planatech.expenditures.dashboard.view.DashboardAdapter" />
+
     </data>
 
     <com.planatech.expenditures.utils.progressiveLayouts.ProgressConstraintLayout
@@ -65,22 +69,25 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/userName"
-                app:textFromFloat="@{user.balance}" />
+                app:balanceFromFloat="@{user.balance}" />
 
         </androidx.constraintlayout.motion.widget.MotionLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/transactionRecycler"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_0dp"
             android:layout_marginTop="@dimen/_16dp"
             android:layout_marginStart="@dimen/_16dp"
             android:layout_marginEnd="@dimen/_16dp"
-            android:background="@color/white"
+            android:overScrollMode="never"
+            android:layout_marginBottom="@dimen/_8dp"
+            app:setFirebaseAdapter="@{adapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mainMotionLayout" />
+            app:layout_constraintTop_toBottomOf="@id/mainMotionLayout"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </com.planatech.expenditures.utils.progressiveLayouts.ProgressConstraintLayout>
 

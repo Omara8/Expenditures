@@ -13,7 +13,7 @@ object PreferencesUtils {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     }
 
-    fun setUserData(user: FirebaseUser?){
+    fun setUserData(user: FirebaseUser?) {
         sharedPreferences?.let {
             it.edit().putString(USER_ID, user?.uid).apply()
             it.edit().putString(USER_NAME, user?.displayName).apply()
@@ -22,19 +22,19 @@ object PreferencesUtils {
         }
     }
 
-    fun getUserId(): String?{
+    fun getUserId(): String? {
         return sharedPreferences?.getString(USER_ID, null)
     }
 
-    fun getUserName(): String?{
+    fun getUserName(): String? {
         return sharedPreferences?.getString(USER_NAME, null)
     }
 
-    fun getUserImage(): String?{
+    fun getUserImage(): String? {
         return sharedPreferences?.getString(USER_IMAGE, null)
     }
 
-    fun getUserEmail(): String?{
+    fun getUserEmail(): String? {
         return sharedPreferences?.getString(USER_EMAIL, null)
     }
 

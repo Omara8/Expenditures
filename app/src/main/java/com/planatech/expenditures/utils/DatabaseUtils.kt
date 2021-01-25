@@ -3,6 +3,7 @@ package com.planatech.expenditures.utils
 import android.util.Log
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
@@ -10,6 +11,7 @@ import com.google.firebase.ktx.Firebase
 import com.planatech.expenditures.model.Transaction
 import com.planatech.expenditures.model.User
 import com.planatech.expenditures.utils.extensions.encodeDots
+
 
 class DatabaseUtils {
 
@@ -32,20 +34,37 @@ class DatabaseUtils {
         }
     }
 
-    fun getTransactions() {
-        dataBase.child(USERS).child(userId!!).child(TRANSACTIONS).addListenerForSingleValueEvent(
-            object :
-                ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    snapshot.children.forEach {
-                        val data = it.getValue<Transaction>()
-                    }
-                }
+    fun getPagedOptions(): Query {
+        return dataBase.child(USERS).child(userId!!).child(TRANSACTIONS)
 
-                override fun onCancelled(error: DatabaseError) {
-                    Log.d(TAG, "onCancelled: getTransaction")
-                }
-            })
+        //        val config: PagedList.Config = PagedList.Config.Builder()
+//            .setEnablePlaceholders(false)
+//            .setPrefetchDistance(10)
+//            .setPageSize(20)
+//            .build()
+//        val options = DatabasePagingOptions.Builder<Transaction>()
+//        return FirebaseRecyclerOptions.Builder<Transaction>()
+//            .setQuery(query, Transaction::class.java)
+//            .build()//.setQuery(query, config, Transaction::class.java).build()
+    }
+
+    fun getTransactions(key: String) {
+        dataBase.child(USERS).child(userId!!).child(TRANSACTIONS).orderByKey().endAt(key)
+            .limitToLast(
+                100
+            ).addValueEventListener(
+                object :
+                    ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.children.forEach {
+                            val data = it.getValue<Transaction>()
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.d(TAG, "onCancelled: getTransaction")
+                    }
+                })
     }
 
     fun initUser(callBack: () -> Unit) {

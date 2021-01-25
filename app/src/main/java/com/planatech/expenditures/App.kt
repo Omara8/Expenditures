@@ -6,7 +6,7 @@ import com.planatech.expenditures.utils.AuthenticationUtils
 import com.planatech.expenditures.utils.DatabaseUtils
 import com.planatech.expenditures.utils.PreferencesUtils
 
-class App: Application() {
+class App : Application() {
 
     init {
         instance = this

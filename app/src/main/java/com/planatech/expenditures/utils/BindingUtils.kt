@@ -9,9 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.firebase.ui.database.paging.FirebaseRecyclerPagingAdapter
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 import com.planatech.expenditures.R
+import com.planatech.expenditures.dashboard.view.DashboardAdapter
+import com.planatech.expenditures.model.TransactionType
 import com.planatech.expenditures.utils.extensions.decodeDots
 
 @BindingAdapter("imageUrl")
@@ -38,24 +41,41 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>?) {
     }
 }
 
+@BindingAdapter("setFirebaseAdapter")
+fun RecyclerView.bindRecyclerViewFirebaseAdapter(adapter: FirebaseRecyclerPagingAdapter<*, DashboardAdapter.DashboardViewHolder>?) {
+    this.run {
+        this.adapter = adapter
+    }
+}
+
 @BindingAdapter("textFromHtml")
 fun MaterialTextView.textFromHtml(text: String?) {
     this.text = HtmlCompat.fromHtml(text ?: "", HtmlCompat.FROM_HTML_MODE_COMPACT)
     this.movementMethod = LinkMovementMethod.getInstance()
 }
 
-@BindingAdapter("textFromFloat")
-fun MaterialTextView.textFromFloat(text: Float?){
-    this.text = "Balance "+ text.toString()
+@BindingAdapter("balanceFromFloat")
+fun MaterialTextView.balanceFromFloat(text: Float?) {
+    this.text = "Balance " + text.toString()
+}
+
+@BindingAdapter("amountFromFloat")
+fun MaterialTextView.amountFromFloat(text: Float?) {
+    this.text = "Amount " + text.toString()
 }
 
 @BindingAdapter("textFromString")
-fun MaterialTextView.textFromString(text: String?){
+fun MaterialTextView.textFromString(text: String?) {
     this.text = text
 }
 
-@BindingAdapter("checkAuthorVisibility")
+@BindingAdapter("checkVisibility")
 fun MaterialTextView.checkAuthorVisibility(text: String?) {
     if (text.isNullOrEmpty())
         this.visibility = View.GONE
+}
+
+@BindingAdapter("transactionTypeString")
+fun MaterialTextView.transactionTypeString(text: TransactionType?) {
+    this.text = text?.value
 }
