@@ -13,6 +13,7 @@ import androidx.paging.PagedList
 import com.firebase.ui.database.paging.DatabasePagingOptions
 import com.planatech.expenditures.MainActivity
 import com.planatech.expenditures.R
+import com.planatech.expenditures.addtransaction.view.AddTransactionFragment
 import com.planatech.expenditures.dashboard.viewmodel.DashboardViewModel
 import com.planatech.expenditures.databinding.FragmentDashboardBinding
 import com.planatech.expenditures.model.Transaction
@@ -41,7 +42,13 @@ class DashboardFragment : Fragment() {
         setUpRecyclerView()
         Handler().postDelayed({
             binding?.mainMotionLayout?.transitionToEnd()
+            binding?.addButton?.visibility = View.VISIBLE
         }, SPLASH_DISPLAY_TIME)
+
+        binding?.addButton?.setOnClickListener {
+            val addTransactionFragment = AddTransactionFragment()
+            addTransactionFragment.show(requireActivity().supportFragmentManager, "Add Transaction")
+        }
     }
 
     private fun setUpRecyclerView() {
