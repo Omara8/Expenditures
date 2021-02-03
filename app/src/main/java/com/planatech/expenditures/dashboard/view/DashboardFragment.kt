@@ -45,6 +45,13 @@ class DashboardFragment : Fragment() {
             binding?.addButton?.visibility = View.VISIBLE
         }, SPLASH_DISPLAY_TIME)
 
+        setListeners()
+    }
+
+    private fun setListeners() {
+        binding?.logoutIcon?.setOnClickListener {
+            signOut()
+        }
         binding?.addButton?.setOnClickListener {
             val addTransactionFragment = AddTransactionFragment()
             addTransactionFragment.show(requireActivity().supportFragmentManager, "Add Transaction")

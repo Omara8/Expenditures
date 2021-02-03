@@ -59,6 +59,11 @@ fun MaterialTextView.balanceFromFloat(text: Float?) {
     this.text = "Balance " + text.toString()
 }
 
+@BindingAdapter("salaryFromFloat")
+fun MaterialTextView.salaryFromFloat(text: Float?) {
+    this.text = "Salary " + text.toString()
+}
+
 @BindingAdapter("amountFromFloat")
 fun MaterialTextView.amountFromFloat(text: Float?) {
     this.text = "Amount " + text.toString()
@@ -73,9 +78,4 @@ fun MaterialTextView.textFromString(text: String?) {
 fun MaterialTextView.checkAuthorVisibility(text: String?) {
     if (text.isNullOrEmpty())
         this.visibility = View.GONE
-}
-
-@BindingAdapter("transactionTypeString")
-fun MaterialTextView.transactionTypeString(text: TransactionType?) {
-    this.text = text?.value
 }

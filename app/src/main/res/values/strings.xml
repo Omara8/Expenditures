@@ -5,6 +5,20 @@
     <string name="progressActivityErrorButton">Try Again</string>
     <string name="progressActivityEmptyTitlePlaceholder">Nothing Here</string>
     <string name="progressActivityEmptyContentPlaceholder">We couldn\'t find anything.</string>
-
+    <string name="name">Name</string>
+    <string name="amount">Amount</string>
+    <string name="end_date">End Date</string>
+    <string name="done">Done</string>
+    <string name="type">Type</string>
+    <string name="transaction_name_error">Enter a valid name.</string>
+    <string name="transaction_amount_error">Enter a valid amount.</string>
+    <string name="transaction_type_error">Enter a valid type.</string>
+    <string name="transaction_date_error">Enter a valid date.</string>
+    <string-array name="payment_types">
+        <item>One Time Income</item>
+        <item>Ongoing Income</item>
+        <item>One Time Payment</item>
+        <item>Ongoing Payment</item>
+    </string-array>
 
 </resources>

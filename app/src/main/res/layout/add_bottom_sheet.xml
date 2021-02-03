@@ -1,134 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.planatech.expenditures.utils.progressiveLayouts.ProgressConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottomSheetContent"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/transactionNameLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <data>
+
+        <variable
+            name="endDate"
+            type="String" />
+
+    </data>
+
+    <com.planatech.expenditures.utils.progressiveLayouts.ProgressConstraintLayout
+        android:id="@+id/bottomSheetContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16dp"
-        android:layout_marginStart="@dimen/_16dp"
-        android:layout_marginEnd="@dimen/_16dp"
-        android:hint="Name"
-        app:hintTextColor="@color/colorPrimaryText"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:helperText="Required"
-        app:helperTextEnabled="true">
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/transactionNameText"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/transactionNameLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:nextFocusForward="@id/transactionAmountLayout"
-            android:padding="@dimen/_8dp"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="14sp" />
+            android:layout_marginStart="@dimen/_16dp"
+            android:layout_marginTop="@dimen/_16dp"
+            android:layout_marginEnd="@dimen/_16dp"
+            android:hint="@string/name"
+            app:helperText="Required"
+            app:helperTextEnabled="true"
+            app:hintTextColor="@color/colorPrimaryText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/transactionNameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:nextFocusForward="@id/transactionAmountLayout"
+                android:padding="@dimen/_8dp"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="14sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/transactionAmountLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8dp"
-        android:layout_marginStart="@dimen/_16dp"
-        android:layout_marginEnd="@dimen/_16dp"
-        android:hint="Amount"
-        app:hintTextColor="@color/colorPrimaryText"
-        app:layout_constraintTop_toBottomOf="@id/transactionNameLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:helperText="Required"
-        app:helperTextEnabled="true">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/transactionAmountText"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/transactionAmountLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:imeOptions="actionNext"
-            android:inputType="numberDecimal"
-            android:padding="@dimen/_8dp"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="14sp" />
+            android:layout_marginStart="@dimen/_16dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:layout_marginEnd="@dimen/_16dp"
+            android:hint="@string/amount"
+            app:helperText="Required"
+            app:helperTextEnabled="true"
+            app:hintTextColor="@color/colorPrimaryText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/transactionNameLayout">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/transactionAmountText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:padding="@dimen/_8dp"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="14sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/transactionTypeLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_16dp"
-        android:layout_marginTop="@dimen/_8dp"
-        android:layout_marginEnd="@dimen/_16dp"
-        android:hint="Type"
-        app:hintTextColor="@color/colorPrimaryText"
-        app:helperText="Required"
-        app:helperTextEnabled="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/transactionAmountLayout">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-            android:id="@+id/transactionTypeText"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/transactionTypeLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_8dp"
-            android:inputType="none"
-            android:textSize="14sp"
-            android:textColor="@color/colorPrimaryText" />
+            android:layout_marginStart="@dimen/_16dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:layout_marginEnd="@dimen/_16dp"
+            android:hint="@string/type"
+            app:helperText="Required"
+            app:helperTextEnabled="true"
+            app:hintTextColor="@color/colorPrimaryText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/transactionAmountLayout">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/transactionTypeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:padding="@dimen/_8dp"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="14sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/transactionEndDateLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_16dp"
-        android:layout_marginTop="@dimen/_8dp"
-        android:layout_marginEnd="@dimen/_16dp"
-        app:endIconDrawable="@drawable/ic_date"
-        android:hint="End Date"
-        app:helperText="Required"
-        app:helperTextEnabled="true"
-        app:hintTextColor="@color/colorPrimaryText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/transactionTypeLayout">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-            android:id="@+id/transactionEndDateText"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/transactionEndDateLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_8dp"
-            android:inputType="none"
-            android:textSize="14sp"
-            android:textColor="@color/colorPrimaryText" />
+            android:layout_marginStart="@dimen/_16dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:layout_marginEnd="@dimen/_16dp"
+            android:hint="@string/end_date"
+            android:visibility="gone"
+            app:endIconDrawable="@drawable/ic_date"
+            app:helperText="Required"
+            app:helperTextEnabled="true"
+            app:hintTextColor="@color/colorPrimaryText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/transactionTypeLayout">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/transactionEndDateText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:text="@{endDate}"
+                android:padding="@dimen/_8dp"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="14sp" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/finishButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Done"
-        android:background="@color/colorAccent"
-        android:textColor="@color/white"
-        android:layout_margin="@dimen/_16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/transactionEndDateLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-</com.planatech.expenditures.utils.progressiveLayouts.ProgressConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/doneButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16dp"
+            android:background="@color/colorAccent"
+            android:text="@string/done"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/transactionEndDateLayout" />
+
+    </com.planatech.expenditures.utils.progressiveLayouts.ProgressConstraintLayout>
+
+</layout>

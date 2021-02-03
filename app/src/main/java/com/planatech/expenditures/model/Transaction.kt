@@ -11,5 +11,5 @@ data class Transaction(
     val amount: Float = 0f,
     //only valid for ongoing transactions
     val endDate: String = "",
-    val type: TransactionType = TransactionType.ONGOING_INCOME
+    val type: String = TransactionType.ONGOING_INCOME.value
 ) : Serializable
