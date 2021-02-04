@@ -9,4 +9,5 @@
     <color name="colorAccent">#FF03DAC5</color>
     <color name="colorAccentDark">#FF018786</color>
     <color name="colorPrimaryText">#FFFFFF</color>
+    <color name="colorIcons">#FFFFFF</color>
 </resources>

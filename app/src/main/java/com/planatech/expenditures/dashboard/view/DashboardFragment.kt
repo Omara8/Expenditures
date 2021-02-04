@@ -16,6 +16,7 @@ import com.planatech.expenditures.R
 import com.planatech.expenditures.addtransaction.view.AddTransactionFragment
 import com.planatech.expenditures.dashboard.viewmodel.DashboardViewModel
 import com.planatech.expenditures.databinding.FragmentDashboardBinding
+import com.planatech.expenditures.edituserinfo.view.UserInfoFragment
 import com.planatech.expenditures.model.Transaction
 import com.planatech.expenditures.utils.DatabaseUtils
 import com.planatech.expenditures.utils.SPLASH_DISPLAY_TIME
@@ -49,6 +50,10 @@ class DashboardFragment : Fragment() {
     }
 
     private fun setListeners() {
+        binding?.editIcon?.setOnClickListener {
+            val editUserInfoFragment = UserInfoFragment(dashboardViewModel?.user?.value)
+            editUserInfoFragment.show(requireActivity().supportFragmentManager, "User Info")
+        }
         binding?.logoutIcon?.setOnClickListener {
             signOut()
         }

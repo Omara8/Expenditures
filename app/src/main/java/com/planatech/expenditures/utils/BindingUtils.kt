@@ -11,10 +11,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.firebase.ui.database.paging.FirebaseRecyclerPagingAdapter
 import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textview.MaterialTextView
 import com.planatech.expenditures.R
 import com.planatech.expenditures.dashboard.view.DashboardAdapter
-import com.planatech.expenditures.model.TransactionType
 import com.planatech.expenditures.utils.extensions.decodeDots
 
 @BindingAdapter("imageUrl")
@@ -52,6 +52,11 @@ fun RecyclerView.bindRecyclerViewFirebaseAdapter(adapter: FirebaseRecyclerPaging
 fun MaterialTextView.textFromHtml(text: String?) {
     this.text = HtmlCompat.fromHtml(text ?: "", HtmlCompat.FROM_HTML_MODE_COMPACT)
     this.movementMethod = LinkMovementMethod.getInstance()
+}
+
+@BindingAdapter("stringFromFloat")
+fun TextInputEditText.stringFromFloat(text: Float?) {
+    this.setText(text.toString())
 }
 
 @BindingAdapter("balanceFromFloat")

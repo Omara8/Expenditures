@@ -10,6 +10,7 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.planatech.expenditures.model.Transaction
 import com.planatech.expenditures.model.User
+import com.planatech.expenditures.utils.extensions.checkAndUpdateLastSalaryDay
 import com.planatech.expenditures.utils.extensions.encodeDots
 
 
@@ -36,16 +37,6 @@ class DatabaseUtils {
 
     fun getPagedOptions(): Query {
         return dataBase.child(USERS).child(userId!!).child(TRANSACTIONS)
-
-        //        val config: PagedList.Config = PagedList.Config.Builder()
-//            .setEnablePlaceholders(false)
-//            .setPrefetchDistance(10)
-//            .setPageSize(20)
-//            .build()
-//        val options = DatabasePagingOptions.Builder<Transaction>()
-//        return FirebaseRecyclerOptions.Builder<Transaction>()
-//            .setQuery(query, Transaction::class.java)
-//            .build()//.setQuery(query, config, Transaction::class.java).build()
     }
 
     fun getTransactions(key: String) {
@@ -76,7 +67,7 @@ class DatabaseUtils {
                     if (data == null) {
                         val user = User(
                             it, userName, userEmail, userImage, 0f, null,
-                            0f, 0f, 0f
+                            0f, 0f, 0f, null
                         )
                         dataBase.child(USERS).child(it).child(USER_INFO).setValue(user)
                             .addOnCompleteListener {
@@ -104,12 +95,42 @@ class DatabaseUtils {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val user = snapshot.getValue<User>()
                         callBack(user)
+                        user?.lastSalaryDate?.checkAndUpdateLastSalaryDay { numberOfMonthsToUpdate, lastSalaryDay ->
+                            if (numberOfMonthsToUpdate > 0) {
+                                updateBalance(user, numberOfMonthsToUpdate - 1, lastSalaryDay)
+                            }
+                        }
                     }
 
                     override fun onCancelled(error: DatabaseError) {
                         Log.d(TAG, "onCancelled: getTransaction")
                     }
                 })
+        }
+    }
+
+    private fun updateBalance(user: User, numberOfMonthsToUpdate: Int, lastSalaryDay: String) {
+        val userBalance: Float = user.balance ?: 0f
+        val userSalaryAmount = user.salaryAmount ?: 0f
+        val totalMonthlyIncome: Float = user.totalMonthlyIncome ?: 0f
+        val totalMonthlyPayments: Float = user.totalMonthlyPayments ?: 0f
+
+        val newBalance =
+            userBalance + userSalaryAmount * numberOfMonthsToUpdate + totalMonthlyIncome * numberOfMonthsToUpdate - totalMonthlyPayments * numberOfMonthsToUpdate
+
+        user.balance = newBalance
+        user.lastSalaryDate = lastSalaryDay
+        if (numberOfMonthsToUpdate > 0)
+            updateUserInfo(user, null)
+    }
+
+    fun updateUserInfo(user: User, callBack: (() -> Unit)?) {
+        userId?.let {
+            dataBase.child(USERS).child(it).child(USER_INFO).setValue(user).addOnSuccessListener {
+                callBack?.let {
+                    it()
+                }
+            }
         }
     }
 

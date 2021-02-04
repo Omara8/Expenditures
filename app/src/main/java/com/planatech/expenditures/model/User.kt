@@ -9,9 +9,10 @@ data class User(
     val name: String? = "",
     val email: String? = "",
     val image: String? = "",
-    val balance: Float? = 0f,
+    var balance: Float? = 0f,
     val salaryDay: String? = "",
     val salaryAmount: Float? = 0f,
     val totalMonthlyPayments: Float? = 0f,
-    val totalMonthlyIncome: Float? = 0f
+    val totalMonthlyIncome: Float? = 0f,
+    var lastSalaryDate: String? = ""
 ) : Serializable

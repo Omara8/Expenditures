@@ -15,11 +15,21 @@ fun TextInputEditText.isNotEmpty(error: Int, parent: TextInputLayout?): Boolean 
 }
 
 fun TextInputEditText.isMoreThanZero(error: Int, parent: TextInputLayout?): Boolean {
-    return if (this.text.toString().isEmpty() || this.text.toString().toDouble() == 0.0) {
+    return if (this.text.toString().isEmpty() || this.text.toString().toDouble() <= 0.0) {
         parent?.error = context.getString(error)
         false
     } else {
         parent?.error = null
         true
+    }
+}
+
+fun TextInputEditText.isValidSalaryDay(error: Int, parent: TextInputLayout?): Boolean {
+    return if (this.text.toString().isNotEmpty() && this.text.toString().toInt() in 1..31) {
+        parent?.error = null
+        true
+    } else {
+        parent?.error = context.getString(error)
+        false
     }
 }
